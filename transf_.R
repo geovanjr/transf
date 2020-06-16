@@ -99,7 +99,7 @@ transf <- function(x, trans, data) {
     
   }
   
-  res <- list(x = var, W = sw$statistic, p = sw$p.value)
+  list(x = var, W = sw$statistic, p = sw$p.value)
 }
 
 
