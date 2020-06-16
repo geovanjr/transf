@@ -60,6 +60,19 @@ transf <- function(x, trans, data) {
     
   }
   
+  if (trans == 'sq') {
+    var <- var^2
+    
+    sw <- shapiro.test(var)
+    
+    plot <- var %>% 
+      ggqqplot() +
+      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
+    print(plot)
+    
+  }
+  
   if (trans == 'cuberoot') {
     var <- var^(1/3)
     
@@ -99,18 +112,5 @@ transf <- function(x, trans, data) {
     
   }
   
-  list(x = var, W = sw$statistic, p = sw$p.value)
+  res <- list(x = var, W = sw$statistic, p = sw$p.value)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
