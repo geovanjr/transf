@@ -33,20 +33,6 @@ transf <- function(x, trans, data) {
     
   }
   
-  if (trans == 'log2') {
-    
-    var <- log2(var)
-    
-    sw <- shapiro.test(var)
-    
-    plot <- var %>% 
-      ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
-    
-  }
-  
   if (trans == 'log10') {
     
     var <- log10(var)
