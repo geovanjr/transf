@@ -9,7 +9,11 @@ transf <- function(x, trans, data) {
   
   if (trans == 'log') {
     
-    var <- log(var)
+    if (any(var == 0)){
+      
+      var <- log(var + 0.01) 
+      
+    } else { var <- log(var) }
     
     sw <- shapiro.test(var)
     
@@ -23,7 +27,11 @@ transf <- function(x, trans, data) {
   
   if (trans == 'log2') {
     
-    var <- log2(var)
+    if (any(var == 0)){
+      
+      var <- log2(var + 0.01) 
+      
+    } else { var <- log2(var) }
     
     sw <- shapiro.test(var)
     
@@ -37,7 +45,11 @@ transf <- function(x, trans, data) {
   
   if (trans == 'log10') {
     
-    var <- log10(var)
+    if (any(var == 0)){
+      
+      var <- log10(var + 0.01) 
+      
+    } else { var <- log10(var) }
     
     sw <- shapiro.test(var)
     
@@ -50,7 +62,12 @@ transf <- function(x, trans, data) {
   }
   
   if (trans == 'sqrt') {
-    var <- sqrt(var)
+    
+    if (any(var == 0)){
+      
+      var <- sqrt(var + 0.01) 
+      
+    } else { var <- sqrt(var) }
     
     sw <- shapiro.test(var)
     
@@ -89,7 +106,12 @@ transf <- function(x, trans, data) {
   }
   
   if (trans == 'inverse') {
-    var <- 1/var
+    
+    if (any(var == 0)){
+      
+      var <- 1/(var + 0.01) 
+      
+    } else { var <- 1/var }
     
     sw <- shapiro.test(var)
     
@@ -102,7 +124,12 @@ transf <- function(x, trans, data) {
   }
   
   if (trans == 'arcsin') {
-    var <- asin(sqrt(var))
+    
+    if (any(var == 0)){
+      
+      var <- asin(sqrt(var + 0.01)) 
+      
+    } else { var <- asin(sqrt(var)) }
     
     sw <- shapiro.test(var)
     
@@ -116,3 +143,5 @@ transf <- function(x, trans, data) {
   
   res <- list(x = var, W = sw$statistic, p = sw$p.value)
 }
+
+
