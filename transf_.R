@@ -3,7 +3,7 @@ transf <- function(x, trans, data) {
   
   require(tidyverse); require(ggpubr)
   
-  var <- data[,deparse(substitute(x))]
+  var <- data[,deparse(substitute(x))] %>% .$ x
   
   if (trans == 'log') {
     
