@@ -116,8 +116,6 @@ transf <- function(x, trans, data) {
   list(x = var, W = sw$statistic, p = sw$p.value)
 }
 
-transf()
-
 
 
 
