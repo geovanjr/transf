@@ -1,5 +1,5 @@
 
-transf <- function(x, trans, data) {
+transf <- function(x, trans, data, plot) {
   
   require(tidyverse); require(ggpubr)
   
@@ -17,11 +17,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -35,11 +34,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -53,11 +51,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -71,11 +68,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -84,11 +80,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -97,11 +92,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -115,11 +109,10 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
@@ -133,15 +126,32 @@ transf <- function(x, trans, data) {
     
     sw <- shapiro.test(var)
     
-    plot <- var %>% 
+    plt <- var %>% 
       ggqqplot() +
       labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    print(plot)
     
   }
   
-  res <- list(x = var, W = sw$statistic, p = sw$p.value)
+  
+  if (trans == 'zscore') {
+    
+    var <- (var - mean(var, na.rm = TRUE)) / sd(var)
+    
+    sw <- shapiro.test(var)
+    
+    plt <- var %>% 
+      ggqqplot() +
+      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
+    
+  }
+  
+  
+  if (missing(plot) || plot == TRUE) {
+    print(plt)
+  }
+  
+  res <- list(x = var, W = sw$statistic, p = sw$p.value, plot = plt)
+  
 }
-
-
