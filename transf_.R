@@ -41,7 +41,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name,
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -60,7 +61,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name,
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -79,7 +81,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name, 
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -93,7 +96,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name,
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -107,7 +111,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name,
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -126,7 +131,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name, 
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -145,7 +151,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name, 
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
@@ -161,7 +168,8 @@ transf <- function(x, trans, data, plot) {
     
     plt <- var %>% 
       ggqqplot() +
-      labs(title = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+      labs(title = var_name, 
+           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
