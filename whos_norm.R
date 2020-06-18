@@ -37,7 +37,7 @@ whos_norm <- function(data) {
   
   not_normal <- tests %>% filter(sign == '*')
   
-  list(signif = sign, all = tests, not_normal = not_normal)
+  list(all = tests, not_normal = not_normal)
   
 } 
 
