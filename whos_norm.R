@@ -31,9 +31,9 @@ whos_norm <- function(data) {
   }
   
   
-  sign <- ifelse(p <= 0.05, '*','normal')
+  signif <- ifelse(p <= 0.05, '*','normal')
   
-  tests <-na.omit(data.frame(variable, W, p, sign))
+  tests <-na.omit(data.frame(variable, W, p, signif))
   
   not_normal <- tests %>% filter(sign == '*')
   
