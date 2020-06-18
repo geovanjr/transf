@@ -1,7 +1,7 @@
 
 whos_norm <- function(data) {
   
-  require(dplyr)
+  require(dplyr, quietly = TRUE)
   
   data <- data %>% as.data.frame()
   
