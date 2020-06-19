@@ -1,7 +1,7 @@
 
 transf <- function(x, trans, data, plot) {
   
-  require(tidyverse); require(ggpubr)
+  require(tidyverse, quietly = TRUE); require(ggpubr, quietly = TRUE)
   
   data <- data %>% as.data.frame()
   
