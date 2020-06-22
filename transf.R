@@ -126,7 +126,7 @@ if (missing(data)) {
                                list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
   
   if (missing(plot) || plot == TRUE) {
-    qq_grid <- ggarrange(qq_raw, plt)
+    qq_grid <- ggarrange(qq_raw, qq_trans)
     print(qq_grid)
   }
   
