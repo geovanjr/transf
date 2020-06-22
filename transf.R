@@ -15,6 +15,7 @@ if (missing(data)) {
   
   var_name <- deparse(substitute(x))
   
+  
   if (trans == 'log') {
     
     if (any(var == 0)){
@@ -24,12 +25,6 @@ if (missing(data)) {
     } else { var <- log(var) }
     
     sw <- shapiro.test(var)
-    
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name, 
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
   
@@ -43,12 +38,6 @@ if (missing(data)) {
     
     sw <- shapiro.test(var)
     
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name,
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    
   }
   
   if (trans == 'log10') {
@@ -60,12 +49,6 @@ if (missing(data)) {
     } else { var <- log10(var) }
     
     sw <- shapiro.test(var)
-    
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name,
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
   
@@ -79,12 +62,6 @@ if (missing(data)) {
     
     sw <- shapiro.test(var)
     
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name, 
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    
   }
   
   if (trans == 'sq') {
@@ -92,24 +69,12 @@ if (missing(data)) {
     
     sw <- shapiro.test(var)
     
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name,
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    
   }
   
   if (trans == 'cuberoot') {
     var <- var^(1/3)
     
     sw <- shapiro.test(var)
-    
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name,
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
   
@@ -123,12 +88,6 @@ if (missing(data)) {
     
     sw <- shapiro.test(var)
     
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name, 
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    
   }
   
   if (trans == 'arcsin') {
@@ -141,12 +100,6 @@ if (missing(data)) {
     
     sw <- shapiro.test(var)
     
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name, 
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
-    
   }
   
   
@@ -155,12 +108,6 @@ if (missing(data)) {
     var <- (var - mean(var, na.rm = TRUE)) / sd(var)
     
     sw <- shapiro.test(var)
-    
-    plt <- var %>% 
-      ggqqplot() +
-      labs(title = var_name, 
-           subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
-                              list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
     
   }
   
