@@ -125,8 +125,9 @@ if (missing(data)) {
          subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
                                list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
   
+  qq_grid <- ggarrange(qq_raw, qq_trans)
+  
   if (missing(plot) || plot == TRUE) {
-    qq_grid <- ggarrange(qq_raw, qq_trans)
     print(qq_grid)
   }
   
