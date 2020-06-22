@@ -15,12 +15,20 @@ if (missing(data)) {
   
   var_name <- deparse(substitute(x))
   
+  sw_raw <- shapiro.test(var)
+  
+  qq_raw <- var %>% 
+    ggqqplot() +
+    labs(title = paste0(var_name, ' (raw)'), 
+         subtitle = substitute(paste('Shapiro-Wilk = ', s_raw, ', p = ', p_raw), 
+                               list(s_raw = round(sw_raw$statistic,3), 
+                                    p_raw = round(sw_raw$p.value,3))))
   
   if (trans == 'log') {
     
     if (any(var == 0)){
       
-      var <- log(var + 0.01) 
+      var <- log(var + 0.5) 
       
     } else { var <- log(var) }
     
@@ -32,7 +40,7 @@ if (missing(data)) {
     
     if (any(var == 0)){
       
-      var <- log2(var + 0.01) 
+      var <- log2(var + 0.5) 
       
     } else { var <- log2(var) }
     
@@ -44,7 +52,7 @@ if (missing(data)) {
     
     if (any(var == 0)){
       
-      var <- log10(var + 0.01) 
+      var <- log10(var + 0.5) 
       
     } else { var <- log10(var) }
     
@@ -56,7 +64,7 @@ if (missing(data)) {
     
     if (any(var == 0)){
       
-      var <- sqrt(var + 0.01) 
+      var <- sqrt(var + 0.5) 
       
     } else { var <- sqrt(var) }
     
@@ -82,7 +90,7 @@ if (missing(data)) {
     
     if (any(var == 0)){
       
-      var <- 1/(var + 0.01) 
+      var <- 1/(var + 0.5) 
       
     } else { var <- 1/var }
     
@@ -94,7 +102,7 @@ if (missing(data)) {
     
     if (any(var == 0)){
       
-      var <- asin(sqrt(var + 0.01)) 
+      var <- asin(sqrt(var + 0.5)) 
       
     } else { var <- asin(sqrt(var)) }
     
@@ -113,9 +121,9 @@ if (missing(data)) {
   
   
   if (missing(plot) || plot == TRUE) {
-    print(plt)
+    return(ggarrange(qq_raw, plt))
   }
   
-  res <- list(x = var, W = sw$statistic, p = sw$p.value, plot = plt)
+  res <- list(x = var, W = sw$statistic, p = sw$p.value, plot_trans = plt, plot_raw = qq_raw)
   
 }
