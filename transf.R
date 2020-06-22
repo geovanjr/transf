@@ -13,6 +13,8 @@ if (missing(data)) {
     
     var <- data[,deparse(substitute(x))] }
   
+  var_name <- deparse(substitute(x))
+  
   if (trans == 'log') {
     
     if (any(var == 0)){
@@ -20,8 +22,6 @@ if (missing(data)) {
       var <- log(var + 0.01) 
       
     } else { var <- log(var) }
-    
-    var_name <- deparse(substitute(x))
     
     sw <- shapiro.test(var)
     
@@ -41,8 +41,6 @@ if (missing(data)) {
       
     } else { var <- log2(var) }
     
-    var_name <- deparse(substitute(x))
-    
     sw <- shapiro.test(var)
     
     plt <- var %>% 
@@ -60,8 +58,6 @@ if (missing(data)) {
       var <- log10(var + 0.01) 
       
     } else { var <- log10(var) }
-    
-    var_name <- deparse(substitute(x))
     
     sw <- shapiro.test(var)
     
@@ -81,8 +77,6 @@ if (missing(data)) {
       
     } else { var <- sqrt(var) }
     
-    var_name <- deparse(substitute(x))
-    
     sw <- shapiro.test(var)
     
     plt <- var %>% 
@@ -96,8 +90,6 @@ if (missing(data)) {
   if (trans == 'sq') {
     var <- var^2
     
-    var_name <- deparse(substitute(x))
-    
     sw <- shapiro.test(var)
     
     plt <- var %>% 
@@ -110,8 +102,6 @@ if (missing(data)) {
   
   if (trans == 'cuberoot') {
     var <- var^(1/3)
-    
-    var_name <- deparse(substitute(x))
     
     sw <- shapiro.test(var)
     
@@ -131,8 +121,6 @@ if (missing(data)) {
       
     } else { var <- 1/var }
     
-    var_name <- deparse(substitute(x))
-    
     sw <- shapiro.test(var)
     
     plt <- var %>% 
@@ -151,8 +139,6 @@ if (missing(data)) {
       
     } else { var <- asin(sqrt(var)) }
     
-    var_name <- deparse(substitute(x))
-    
     sw <- shapiro.test(var)
     
     plt <- var %>% 
@@ -167,8 +153,6 @@ if (missing(data)) {
   if (trans == 'zscore') {
     
     var <- (var - mean(var, na.rm = TRUE)) / sd(var)
-    
-    var_name <- deparse(substitute(x))
     
     sw <- shapiro.test(var)
     
