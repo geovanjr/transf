@@ -119,6 +119,11 @@ if (missing(data)) {
     
   }
   
+  plt <- var %>% 
+    ggqqplot() +
+    labs(title = paste0(var_name, ' (',trans,')'), 
+         subtitle = substitute(paste('Shapiro-Wilk = ', s, ', p = ', p), 
+                               list(s = round(sw$statistic,3), p = round(sw$p.value,3))))
   
   if (missing(plot) || plot == TRUE) {
     return(ggarrange(qq_raw, plt))
