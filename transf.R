@@ -3,9 +3,15 @@ transf <- function(x, trans, data, plot) {
   
   require(dplyr, quietly = TRUE); require(ggpubr, quietly = TRUE)
   
-  data <- data %>% as.data.frame()
-  
-  var <- data[,deparse(substitute(x))]
+if (missing(data)) { 
+    
+    var <- x
+    
+  } else { 
+    
+    data <- data %>% as.data.frame()
+    
+    var <- data[,deparse(substitute(x))] }
   
   if (trans == 'log') {
     
