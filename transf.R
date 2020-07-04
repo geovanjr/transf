@@ -98,19 +98,6 @@ if (missing(data)) {
     
   }
   
-  if (trans == 'arcsin') {
-    
-    if (any(var == 0)){
-      
-      var <- asin(sqrt(var + 0.5)) 
-      
-    } else { var <- asin(sqrt(var)) }
-    
-    sw <- shapiro.test(var)
-    
-  }
-  
-  
   if (trans == 'zscore') {
     
     var <- (var - mean(var, na.rm = TRUE)) / sd(var)
