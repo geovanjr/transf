@@ -119,6 +119,14 @@ if (missing(data)) {
     
   }
   
+  if (trans == 'center') {
+    
+    var <- var - mean(var, na.rm = TRUE)
+    
+    sw <- shapiro.test(var)
+    
+  }
+  
   qq_trans <- var %>% 
     ggqqplot() +
     labs(title = paste0(var_name, ' (',trans,')'), 
