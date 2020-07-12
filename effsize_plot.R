@@ -4,7 +4,7 @@ effsize_plot <- function(x, g, method = 'r', paired = F,
                          line.col = 'grey', lwd = 1, lty = 2, 
                          ggtheme = theme_minimal(),
                          par_r = list(conf = .95, type = 'perc', R = 1000), 
-                         par_d = list(pooled = F, hedges.correction = F, conf.level = .95),
+                         par_d = list(pooled = T, hedges.correction = F, conf.level = .95),
                          plot = T, show = F) {
   require(dplyr, warn.conflicts = F)
   require(ggplot2, warn.conflicts = F)
@@ -123,7 +123,7 @@ effsize_plot <- function(x, g, method = 'r', paired = F,
         p[i] <- tt$p.value
         
         es <- cohen.d(x[,i], g, paired=FALSE,
-                      pooled = if (is.null(par_d$pooled)) {pooled = FALSE} 
+                      pooled = if (is.null(par_d$pooled)) {pooled = TRUE} 
                       else {pooled = par_d$pooled}, 
                       
                       hedges.correction = 
@@ -176,16 +176,32 @@ effsize_plot <- function(x, g, method = 'r', paired = F,
       
     }
     
-    df <- data.frame(variable, t, p = round(p,4), d, lower, upper)
-    
-    es_plot <- df %>% 
-      ggplot(aes(variable,d)) +
-      geom_errorbar(aes(ymin=lower, ymax=upper), width = width, col = color) +
-      geom_hline(yintercept = 0, col=line.col, lty=lty, lwd = lwd) +
-      geom_point(col = color, size = size) +
-      labs(x='') +
-      coord_flip() +
-      ggtheme
+    if (hedges.correction == TRUE){
+      df <- data.frame(variable = factor(variable), t, p = round(p,4), 
+                       g = d, 
+                       lower, upper)
+      
+      es_plot <- df %>% 
+        ggplot(aes(variable,g)) +
+        geom_errorbar(aes(ymin=lower, ymax=upper), width = width, col = color) +
+        geom_hline(yintercept = 0, col=line.col, lty=lty, lwd = lwd) +
+        geom_point(col = color, size = size) +
+        labs(x='') +
+        coord_flip() +
+        ggtheme
+    } else {
+      df <- data.frame(variable = factor(variable), t, p = round(p,4), 
+                       d, lower, upper)
+      
+      es_plot <- df %>% 
+        ggplot(aes(variable,d)) +
+        geom_errorbar(aes(ymin=lower, ymax=upper), width = width, col = color) +
+        geom_hline(yintercept = 0, col=line.col, lty=lty, lwd = lwd) +
+        geom_point(col = color, size = size) +
+        labs(x='') +
+        coord_flip() +
+        ggtheme
+    }
     
   }
   
