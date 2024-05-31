@@ -51,7 +51,7 @@ smd <- function(m1, sd1, n1, m2, sd2, n2, paired = F, r = 0.7) {
 }
 
 
-calc_smd = function(data, paired = F, r = 0.7,
+calc_smd <- function(data, paired = F, r = 0.7,
                     print = T, save_output = F) {
   
   data <- as.data.frame(data)
