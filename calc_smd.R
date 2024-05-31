@@ -56,7 +56,10 @@ calc_smd <- function(data, paired = F, r = 0.7,
   
   data <- as.data.frame(data)
   
-  d <- data.frame(SMD = rep(0,nrow(data)),
+  d <- data.frame(MD = rep(0,nrow(data)),
+                  rCI_low = rep(0,nrow(data)),
+                  rCI_upper = rep(0,nrow(data)),
+                  SMD = rep(0,nrow(data)),
                   SE = rep(0,nrow(data)),
                   CI_low = rep(0,nrow(data)),
                   CI_upper = rep(0,nrow(data)),
